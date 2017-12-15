@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:orientation="vertical"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp"
+    tools:background="@color/primary">
+
+    <ImageView
+        android:id="@+id/filmUrl"
+        android:layout_width="63dp"
+        android:layout_height="105dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="10dp"
+        android:contentDescription="@null"
+        android:src="@drawable/movie_loading1" />
+
+    <TextView
+        android:id="@+id/filmName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/filmUrl"
+        android:layout_toEndOf="@id/filmUrl"
+        android:gravity="start|center_vertical"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:textColor="#272727"
+        android:textSize="17sp"
+        tools:text="绝地逃亡" />
+
+    <TextView
+        android:id="@+id/filmActor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/filmUrl"
+        android:layout_marginEnd="20dp"
+        android:layout_toEndOf="@id/filmUrl"
+        android:ellipsize="end"
+        android:gravity="start|center_vertical"
+        android:lines="1"
+        android:paddingBottom="4dp"
+        android:paddingTop="2dp"
+        android:textColor="#76708C"
+        android:textSize="13sp"
+        tools:text="成龙 雷尼 范冰冰" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="@style/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/filmName"
+        android:layout_toEndOf="@id/filmUrl"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:stepSize="1.0"
+        tools:rating="3.6" />
+
+    <TextView
+        android:id="@+id/filmScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/ratingBar"
+        android:layout_below="@id/filmName"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@id/ratingBar"
+        android:gravity="start|center_vertical"
+        android:textColor="#76708C"
+        android:textSize="13sp"
+        tools:text="5.9" />
+
+
+    <TextView
+        android:id="@+id/tickets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/buy_tickets_bg"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:minHeight="27dp"
+        android:minWidth="48dp"
+        android:text="购票"
+        android:textColor="@color/buy_tickets_textcolor"
+        android:textSize="13sp" />
+
+
+    <TextView
+        android:id="@+id/filmDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/filmActor"
+        android:layout_alignStart="@+id/ratingBar"
+        android:layout_toStartOf="@id/tickets"
+        android:ellipsize="end"
+        android:gravity="start|center_vertical"
+        android:lines="1"
+        android:textColor="#76708C"
+        android:textSize="13sp"
+        tools:text="成龙 范冰冰,各地被狂虐" />
+
+
+</RelativeLayout>
+

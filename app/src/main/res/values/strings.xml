@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MVP</string>
+
+    <string name="loading">正在加载,么么哒~</string>
+    <string name="loading_error">小二很忙,系统很累,稍后再试吧</string>
+    <string name="refresh">刷新</string>
+    <string name="loading_more">哎呦没有出来~在点一次吧</string>
+    <string name="no_more_load">哎呦别点了~已经么有了</string>
+
+    <string name="pull_down">下拉刷新</string>
+    <string name="pull_down_to_refresh">下拉开始刷新</string>
+    <string name="release_to_refresh">松开刷新</string>
+    <string name="refreshing">正在刷新&#8230;</string>
+    <string name="refresh_complete">刷新完成</string>
+    <string name="last_update">last update:&#160;</string>
+    <string name="seconds_ago">&#160;秒以前</string>
+    <string name="minutes_ago">&#160;反正以前</string>
+    <string name="hours_ago">&#160;小时以前</string>
+</resources>
