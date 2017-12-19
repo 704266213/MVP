@@ -1,4 +1,4 @@
-package com.happy.food.divider
+package com.mvp.divider
 
 import android.content.Context
 import android.graphics.Rect

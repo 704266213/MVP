@@ -6,7 +6,7 @@ import com.mvp.http.listener.OnStartRequestListener
 import com.mvp.http.loading.OnLoadingViewListener
 
 
-class OnStaggeredLoadMoreScollerListener(onLoadingViewListener: OnLoadingViewListener, onStartRequestListener: OnStartRequestListener) : OnLoadMoreScrollListener(onLoadingViewListener,onStartRequestListener) {
+class StaggeredLoadMoreScollerListener(onLoadingViewListener: OnLoadingViewListener, onStartRequestListener: OnStartRequestListener) : OnLoadMoreScrollListener(onLoadingViewListener,onStartRequestListener) {
 
     /**
      * 最后一个的位置

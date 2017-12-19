@@ -24,8 +24,7 @@
     <color name="style_color_primary">#d32f2f</color>
     <color name="film_coming_header_bg">#F2F2F2</color>
     <color name="film_coming_header_tx">#202020</color>
-
-
+    <color name="color_ececee">#ececee</color>
 
 
 </resources>

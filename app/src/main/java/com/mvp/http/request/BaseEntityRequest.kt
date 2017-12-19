@@ -14,23 +14,25 @@ import com.mvp.http.retrofit.BaseRetrofit
  * 修改备注：
  * @version
  */
-open abstract class BaseEntityRequest<in T>(private var onResponseListener: OnResponseListener<T>?) : OnResponseListener<T> {
+
+//private var onResponseListener: OnResponseListener<T>?
+open abstract class BaseEntityRequest<in T> : OnResponseListener<T> {
 
     fun createApiService(baseRetrofit: BaseRetrofit): ApiService {
         val retrofit = baseRetrofit.createRetrofit()
         return retrofit.create(ApiService::class.java)
     }
 
-    override fun onSuccess(entity: T?) {
-        onResponseListener?.onSuccess(entity)
-    }
-
-    override fun onFailure(errorInfo: String) {
-        onResponseListener?.onFailure(errorInfo)
-    }
-
-    open fun onDestroy() {
-        onResponseListener = null
-    }
+//    override fun onSuccess(entity: T?) {
+//        onResponseListener?.onSuccess(entity)
+//    }
+//
+//    override fun onFailure(errorInfo: String) {
+//        onResponseListener?.onFailure(errorInfo)
+//    }
+//
+//    open fun onDestroy() {
+//        onResponseListener = null
+//    }
 
 }

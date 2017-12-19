@@ -1,4 +1,4 @@
-package com.happy.food.divider
+package com.mvp.divider
 
 import android.content.Context
 import android.content.res.Resources
@@ -338,7 +338,7 @@ abstract class FlexibleDividerDecoration protected constructor(builder: Builder<
             return this as T
         }
 
-        fun drawable(@DrawableRes id: Int): T = drawable(ContextCompat.getDrawable(mContext, id))
+        fun drawable(@DrawableRes id: Int): T = drawable(ContextCompat.getDrawable(mContext, id)!!)
 
         fun drawable(drawable: Drawable): T = drawableProvider(object : DrawableProvider {
             override fun drawableProvider(position: Int, parent: RecyclerView): Drawable {

@@ -1,9 +1,8 @@
-package com.happy.food.manager
+package com.mvp.http.retrofit
 
-import com.happy.food.interceptor.NativeCacheInterceptor
-import com.happy.food.interceptor.NetworkCacheInterceptor
 import com.mvp.MVPApplication
-import com.mvp.http.retrofit.BaseRetrofit
+import com.mvp.http.interceptor.NativeCacheInterceptor
+import com.mvp.http.interceptor.NetworkCacheInterceptor
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import java.io.File

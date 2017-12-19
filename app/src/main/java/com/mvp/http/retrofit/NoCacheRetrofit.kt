@@ -1,6 +1,6 @@
 package com.happy.food.manager
 
-import com.happy.food.interceptor.NativeCacheInterceptor
+import com.mvp.http.interceptor.NativeCacheInterceptor
 import com.mvp.http.retrofit.BaseRetrofit
 import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit

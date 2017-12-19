@@ -11,8 +11,7 @@
 
     <dimen name="indicator_size">6dp</dimen>
     <dimen name="indicator_margin">6dp</dimen>
-
-
+    <dimen name="dimen_1">1dp</dimen>
 
 
 </resources>

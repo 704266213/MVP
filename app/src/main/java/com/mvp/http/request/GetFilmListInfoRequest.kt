@@ -4,9 +4,10 @@ import android.util.Log
 import com.happy.food.manager.NoCacheRetrofit
 import com.mvp.http.loading.OnLoadingViewListener
 import com.mvp.http.response.BaseResponseCallBack
-import com.mvp.http.response.listener.OnResponseListener
 import com.mvp.model.BaseModel
-import com.mvp.model.FilmInfoModel
+import com.mvp.model.HotFilmModel
+import com.mvp.view.FilmListInfoView
+import com.mvp.view.handler.RefreshAndLoadMoreHandler
 import retrofit2.Call
 
 /**
@@ -19,9 +20,10 @@ import retrofit2.Call
  * 修改备注：
  * @version
  */
-class GetFilmListInfoRequest(onResponseListener: OnResponseListener<List<FilmInfoModel>>) : BaseEntityRequest<List<FilmInfoModel>>(onResponseListener) {
+class GetFilmListInfoRequest(private var filmListInfoView: FilmListInfoView?) : BaseEntityRequest<HotFilmModel>() {
 
-    private var call: Call<BaseModel<List<FilmInfoModel>>>? = null
+    private var call: Call<BaseModel<HotFilmModel>>? = null
+    private var refreshAndLoadMoreHandler = RefreshAndLoadMoreHandler(filmListInfoView!!)
 
     fun getFilmListInfoRequest(onLoadingViewListener: OnLoadingViewListener?, pageNo: String) {
         val cacheRetrofit = NoCacheRetrofit()
@@ -31,20 +33,28 @@ class GetFilmListInfoRequest(onResponseListener: OnResponseListener<List<FilmInf
         call?.enqueue(callBack)
     }
 
-    override fun onDestroy() {
-        call?.cancel()
-        super.onDestroy()
-    }
-
-
-    override fun onSuccess(entity: List<FilmInfoModel>?) {
+    override fun onSuccess(entity: HotFilmModel?) {
         Log.e("XLog", "==============onSuccess=======================")
-        super.onSuccess(entity)
+        val filmModels = entity?.filmModels
+        if (filmModels != null) {
+            refreshAndLoadMoreHandler.onSuccessHandler(filmModels)
+        }
+        val bannerModels = entity?.bannerModels
+        if (bannerModels != null) {
+            filmListInfoView?.initBanner(bannerModels)
+        }
     }
 
     override fun onFailure(errorInfo: String) {
         Log.e("XLog", "==============onFailure=======================")
-        super.onFailure(errorInfo)
+        if (filmListInfoView != null) {
+            refreshAndLoadMoreHandler.onFailureHandler(errorInfo)
+        }
+    }
+
+    fun onDestroy() {
+        filmListInfoView = null
+        call?.cancel()
     }
 
 
