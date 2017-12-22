@@ -12,7 +12,7 @@ package com.mvp.view
  */
 interface InitView<in T> {
 
-    fun initViewSuccess(entity: T)
+    fun initViewSuccess(entity: T?)
 
     fun initViewFail(errorInfo: String)
 

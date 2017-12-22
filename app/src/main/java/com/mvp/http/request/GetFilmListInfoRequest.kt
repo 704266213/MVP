@@ -4,6 +4,8 @@ import android.util.Log
 import com.happy.food.manager.NoCacheRetrofit
 import com.mvp.http.loading.OnLoadingViewListener
 import com.mvp.http.response.BaseResponseCallBack
+import com.mvp.http.response.listener.OnResponseListener
+import com.mvp.http.retrofit.CacheRetrofit
 import com.mvp.model.BaseModel
 import com.mvp.model.HotFilmModel
 import com.mvp.view.FilmListInfoView
@@ -20,13 +22,13 @@ import retrofit2.Call
  * 修改备注：
  * @version
  */
-class GetFilmListInfoRequest(private var filmListInfoView: FilmListInfoView?) : BaseEntityRequest<HotFilmModel>() {
+class GetFilmListInfoRequest(private var filmListInfoView: FilmListInfoView?) : BaseEntityRequest(), OnResponseListener<HotFilmModel> {
 
     private var call: Call<BaseModel<HotFilmModel>>? = null
     private var refreshAndLoadMoreHandler = RefreshAndLoadMoreHandler(filmListInfoView!!)
 
     fun getFilmListInfoRequest(onLoadingViewListener: OnLoadingViewListener?, pageNo: String) {
-        val cacheRetrofit = NoCacheRetrofit()
+        val cacheRetrofit = CacheRetrofit()
         val apiService = createApiService(cacheRetrofit)
         call = apiService.getFilmListInfo(pageNo)
         val callBack = BaseResponseCallBack(onLoadingViewListener, this)
@@ -34,7 +36,6 @@ class GetFilmListInfoRequest(private var filmListInfoView: FilmListInfoView?) : 
     }
 
     override fun onSuccess(entity: HotFilmModel?) {
-        Log.e("XLog", "==============onSuccess=======================")
         val filmModels = entity?.filmModels
         if (filmModels != null) {
             refreshAndLoadMoreHandler.onSuccessHandler(filmModels)
@@ -46,7 +47,6 @@ class GetFilmListInfoRequest(private var filmListInfoView: FilmListInfoView?) : 
     }
 
     override fun onFailure(errorInfo: String) {
-        Log.e("XLog", "==============onFailure=======================")
         if (filmListInfoView != null) {
             refreshAndLoadMoreHandler.onFailureHandler(errorInfo)
         }

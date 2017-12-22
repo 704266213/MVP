@@ -10,6 +10,6 @@ package com.mvp.view
  * 修改备注：
  * @version
  */
-interface ILoadMoreAndInitView<out E, in T : List<E>> : IEntryInitView<T>, ILoadMoreView<T> {
+interface ILoadMoreAndInitView<out E, in T : List<E>> : IEntryInitView<E, T>, ILoadMoreView<T> {
 
 }

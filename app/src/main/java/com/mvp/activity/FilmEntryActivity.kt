@@ -3,7 +3,6 @@ package com.mvp.activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.mvp.R
@@ -17,15 +16,14 @@ import com.mvp.model.FilmInfoModel
 import com.mvp.view.FilmListInfoView
 import com.mvp.widget.LoadingFooterLayout
 import com.mvp.widget.loadmore.LinearLoadMoreListener
+import com.mvp.widget.reflesh.OnRefreshBeginListener
 import com.mvp.widget.reflesh.PtrDefaultHandler
-import com.mvp.widget.reflesh.PtrFrameLayout
-import com.mvp.widget.reflesh.PtrHandler
 import kotlinx.android.synthetic.main.activity_film_entry.*
 
-class FilmEntryActivity : AppCompatActivity(), OnStartRequestListener, FilmListInfoView {
+class FilmEntryActivity : AppCompatActivity(), FilmListInfoView, OnRefreshBeginListener, OnStartRequestListener {
+
 
     private var pageNo = 1
-    private var isInitView = true
     private lateinit var getFilmListInfoRequest: GetFilmListInfoRequest
     private var loadingView: LoadingView? = null
     private lateinit var filmAdapter: FilmAdapter
@@ -43,18 +41,17 @@ class FilmEntryActivity : AppCompatActivity(), OnStartRequestListener, FilmListI
     private fun initView() {
         loadingViewLayout.onStartRequestListener = this
         loadingView = LoadingView(loadingViewLayout)
-        refreshView.setPtrHandler(object : PtrHandler {
-            override fun onRefreshBegin(frame: PtrFrameLayout?) {
-                pageNo = 1
-                startRequest()
-            }
 
-            override fun checkCanDoRefresh(frame: PtrFrameLayout?, content: View?, header: View?): Boolean =
-                    PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header)
-        })
+        refreshView.setPtrHandler(PtrDefaultHandler(this))
 
+        /*
+         * 滚动到底部自动加载更多
+         */
         loadingFooterLayout = LoadingFooterLayout(this)
         loadingFooterLayout.onStartRequestListener = this
+        linearLoadMoreListener = LinearLoadMoreListener(loadingFooterLayout, this)
+        recyclerView.addOnScrollListener(linearLoadMoreListener)
+
         val itemDecoration = HorizontalDividerItemDecoration.Builder(this).colorResId(R.color.color_ececee).sizeResId(R.dimen.dimen_1).build()
         recyclerView?.addItemDecoration(itemDecoration)
 
@@ -63,12 +60,13 @@ class FilmEntryActivity : AppCompatActivity(), OnStartRequestListener, FilmListI
         filmAdapter.addFooterViews(loadingFooterLayout)
         recyclerView.adapter = filmAdapter
 
-        /*
-         * 滚动到底部自动加载更多
-         */
-        linearLoadMoreListener = LinearLoadMoreListener(loadingFooterLayout, this)
-        recyclerView.addOnScrollListener(linearLoadMoreListener)
+
         getFilmListInfoRequest = GetFilmListInfoRequest(this)
+        startRequest()
+    }
+
+    override fun onRefreshBeginListener() {
+        pageNo = 1
         startRequest()
     }
 
@@ -81,19 +79,16 @@ class FilmEntryActivity : AppCompatActivity(), OnStartRequestListener, FilmListI
 
     }
 
-    override fun isInitView(): Boolean {
-        return isInitView
-    }
 
     override fun emptyView() {
 
     }
 
-    override fun initViewSuccess(entity: List<FilmInfoModel>) {
+    override fun initViewSuccess(entity: List<FilmInfoModel>?) {
         refreshView.visibility = View.VISIBLE
-        isInitView = false
         loadingView = LoadingView(loadingFooterLayout)
-        allDataLoadFinish(entity)
+        if (entity != null)
+            allDataLoadFinish(entity)
         pageNo += 1
     }
 
@@ -122,21 +117,22 @@ class FilmEntryActivity : AppCompatActivity(), OnStartRequestListener, FilmListI
     }
 
     override fun loadMoreSuccess(entity: List<FilmInfoModel>) {
-        allDataLoadFinish(entity)
-        pageNo += 1
+        if (allDataLoadFinish(entity))
+            pageNo += 1
     }
 
     override fun loadMoreFailure(errorInfo: String) {
         linearLoadMoreListener.setLoadingMore(false)
     }
 
-    private fun allDataLoadFinish(entity: List<FilmInfoModel>) {
+    private fun allDataLoadFinish(entity: List<FilmInfoModel>): Boolean {
         val size = entity.size
         val hasMore = size >= 10
         linearLoadMoreListener.setHasMore(hasMore)
         filmAdapter.isShowLoadMoreFootView = hasMore
         linearLoadMoreListener.setLoadingMore(false)
         filmAdapter.addDataToList(entity)
+        return hasMore
     }
 
 

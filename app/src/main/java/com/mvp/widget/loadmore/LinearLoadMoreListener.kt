@@ -2,8 +2,8 @@ package com.mvp.widget.loadmore
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-
 import com.mvp.http.listener.OnStartRequestListener
+
 import com.mvp.http.loading.OnLoadingViewListener
 
 

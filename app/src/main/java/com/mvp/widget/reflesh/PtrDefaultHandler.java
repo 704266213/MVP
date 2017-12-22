@@ -3,9 +3,16 @@ package com.mvp.widget.reflesh;
 import android.view.View;
 import android.widget.AbsListView;
 
-public abstract class PtrDefaultHandler implements PtrHandler {
+public class PtrDefaultHandler implements PtrHandler {
 
-    public static boolean canChildScrollUp(View view) {
+    private OnRefreshBeginListener onRefreshBeginListener;
+
+    public PtrDefaultHandler(OnRefreshBeginListener onRefreshBeginListener) {
+        this.onRefreshBeginListener = onRefreshBeginListener;
+    }
+
+
+    public boolean canChildScrollUp(View view) {
         if (android.os.Build.VERSION.SDK_INT < 14) {
             if (view instanceof AbsListView) {
                 final AbsListView absListView = (AbsListView) view;
@@ -28,12 +35,19 @@ public abstract class PtrDefaultHandler implements PtrHandler {
      * @param header
      * @return
      */
-    public static boolean checkContentCanBePulledDown(PtrFrameLayout frame, View content, View header) {
+    public boolean checkContentCanBePulledDown(PtrFrameLayout frame, View content, View header) {
         return !canChildScrollUp(content);
     }
 
     @Override
     public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
         return checkContentCanBePulledDown(frame, content, header);
+    }
+
+    @Override
+    public void onRefreshBegin(PtrFrameLayout frame) {
+        if (onRefreshBeginListener != null) {
+            onRefreshBeginListener.onRefreshBeginListener();
+        }
     }
 }

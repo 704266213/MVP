@@ -1,8 +1,8 @@
 package com.mvp.widget.loadmore
 
 import android.support.v7.widget.RecyclerView
-
 import com.mvp.http.listener.OnStartRequestListener
+
 import com.mvp.http.loading.OnLoadingViewListener
 
 abstract class OnLoadMoreScrollListener(private val onLoadingViewListener: OnLoadingViewListener, private val onStartRequestListener: OnStartRequestListener) : RecyclerView.OnScrollListener() {

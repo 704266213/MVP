@@ -10,9 +10,9 @@ package com.mvp.view.handler
  * 修改备注：
  * @version
  */
-interface IRefreshAndLoadMoreHandler<in T> {
+interface IResponseHandler<in T> {
 
-    fun onSuccessHandler(entity: T)
+    fun onSuccessHandler(entity: T?)
 
     fun onFailureHandler(errorInfo: String)
 }

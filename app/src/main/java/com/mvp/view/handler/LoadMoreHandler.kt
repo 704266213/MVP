@@ -12,34 +12,25 @@ import com.mvp.view.ILoadMoreAndInitView
  * 修改备注：
  * @version
  */
-open class LoadMoreHandler<out E, in T : List<E>>(private val loadMoreAndInitView: ILoadMoreAndInitView<E, T>) : IRefreshAndLoadMoreHandler<T> {
+open class LoadMoreHandler<out E, in T : List<E>>(private val loadMoreAndInitView: ILoadMoreAndInitView<E, T>) : EntryHandler<E, T>(loadMoreAndInitView) {
 
-
-    override fun onSuccessHandler(entity: T) {
-        when {
-            loadMoreAndInitView.isInitView() -> {
-                loadMoreAndInitView.initViewSuccess(entity)
-                if (entity.isEmpty()) {
-                    loadMoreAndInitView.emptyView()
-                }
-            }
-            loadMoreAndInitView.isLoadMore() -> {
+    override fun onSuccessHandler(entity: T?) {
+        if (loadMoreAndInitView.isLoadMore()) {
+            if (entity != null) {
                 loadMoreAndInitView.loadMoreSuccess(entity)
             }
+        } else {
+            super.onSuccessHandler(entity)
         }
     }
 
     override fun onFailureHandler(errorInfo: String) {
-        when {
-            loadMoreAndInitView.isInitView() -> {
-                loadMoreAndInitView.initViewFail(errorInfo)
-            }
-            loadMoreAndInitView.isLoadMore() -> {
-                loadMoreAndInitView.loadMoreFailure(errorInfo)
-            }
+        if (loadMoreAndInitView.isLoadMore()) {
+            loadMoreAndInitView.loadMoreFailure(errorInfo)
+        } else {
+            super.onFailureHandler(errorInfo)
         }
-
     }
-
-
 }
+
+

@@ -3,7 +3,7 @@
     package="com.mvp">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".MVPApplication"
@@ -13,7 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.mvp.glide.module.OkHttpLibraryGlideModule"
             android:value="LibraryGlideModule" />
@@ -25,7 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.FilmEntryActivity"></activity>
+        <activity android:name=".activity.FilmEntryActivity" />
+        <activity android:name=".activity.UserInfoActivity"></activity>
     </application>
 
 </manifest>

@@ -10,9 +10,7 @@ package com.mvp.view
  * 修改备注：
  * @version
  */
-interface IEntryInitView<in T> : InitView<T> {
-
-    fun isInitView(): Boolean
+interface IEntryInitView<out E, in T : List<E>> : InitView<T> {
 
     fun emptyView()
 

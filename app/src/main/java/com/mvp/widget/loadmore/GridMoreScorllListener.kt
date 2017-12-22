@@ -7,7 +7,7 @@ import com.mvp.http.listener.OnStartRequestListener
 import com.mvp.http.loading.OnLoadingViewListener
 
 
-class GridMoreScorllListener(onLoadingViewListener: OnLoadingViewListener, onStartRequestListener: OnStartRequestListener) : OnLoadMoreScrollListener(onLoadingViewListener,onStartRequestListener) {
+class GridMoreScorllListener(onLoadingViewListener: OnLoadingViewListener, onStartRequestListener: OnStartRequestListener) : OnLoadMoreScrollListener(onLoadingViewListener, onStartRequestListener) {
 
     override fun getLastVisibleItemPosition(recyclerView: RecyclerView?): Int {
         val layoutManager = recyclerView!!.layoutManager

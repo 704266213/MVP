@@ -15,10 +15,12 @@ import com.mvp.view.IRefreshAndLoadMoreView
  */
 class RefreshAndLoadMoreHandler<out E, in T : List<E>>(private val refreshAndLoadMoreView: IRefreshAndLoadMoreView<E, T>) : LoadMoreHandler<E, T>(refreshAndLoadMoreView) {
 
-    override fun onSuccessHandler(entity: T) {
+    override fun onSuccessHandler(entity: T?) {
         when {
             refreshAndLoadMoreView.isRefreshing() -> {
-                refreshAndLoadMoreView.onRefreshSuccess(entity)
+                if (entity != null) {
+                    refreshAndLoadMoreView.onRefreshSuccess(entity)
+                }
             }
             else -> {
                 super.onSuccessHandler(entity)
