@@ -8,7 +8,7 @@ import com.mvp.http.listener.OnStartRequestListener
 import com.mvp.http.loading.LoadingView
 import com.mvp.http.request.GetUserInfoRequest
 import com.mvp.model.UserInfoModel
-import com.mvp.view.InitView
+import com.mvp.view.base.InitView
 import kotlinx.android.synthetic.main.activity_user_info.*
 
 class UserInfoActivity : AppCompatActivity(), OnStartRequestListener, InitView<UserInfoModel> {
@@ -44,5 +44,10 @@ class UserInfoActivity : AppCompatActivity(), OnStartRequestListener, InitView<U
 
     override fun initViewFail(errorInfo: String) {
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        getUserInfoRequest.onDestroy()
     }
 }

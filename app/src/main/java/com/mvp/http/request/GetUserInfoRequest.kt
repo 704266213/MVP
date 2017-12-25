@@ -1,13 +1,12 @@
 package com.mvp.http.request
 
+import com.happy.food.manager.NoCacheRetrofit
 import com.mvp.http.loading.OnLoadingViewListener
 import com.mvp.http.response.BaseResponseCallBack
 import com.mvp.http.response.EntityResponse
-import com.mvp.http.retrofit.CacheRetrofit
 import com.mvp.model.BaseModel
-import com.mvp.model.HotFilmModel
 import com.mvp.model.UserInfoModel
-import com.mvp.view.InitView
+import com.mvp.view.base.InitView
 import retrofit2.Call
 
 /**
@@ -20,12 +19,12 @@ import retrofit2.Call
  * 修改备注：
  * @version
  */
-class GetUserInfoRequest(private var initView: InitView<UserInfoModel>?) : BaseEntityRequest() {
+class GetUserInfoRequest(private var initView: InitView<UserInfoModel>?) : BaseEntityRequest<UserInfoModel>() {
 
-    private var call: Call<BaseModel<UserInfoModel>>? = null
+//    private var call: Call<BaseModel<UserInfoModel>>? = null
 
     fun getUserInfoRequest(onLoadingViewListener: OnLoadingViewListener?, userInfo: String) {
-        val cacheRetrofit = CacheRetrofit()
+        val cacheRetrofit = NoCacheRetrofit()
         val apiService = createApiService(cacheRetrofit)
         call = apiService.getUserInfo(userInfo)
         var entityResponse = EntityResponse(initView)

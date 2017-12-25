@@ -1,9 +1,6 @@
 package com.mvp.api
 
-import com.mvp.model.BaseModel
-import com.mvp.model.FilmInfoModel
-import com.mvp.model.HotFilmModel
-import com.mvp.model.UserInfoModel
+import com.mvp.model.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -27,5 +24,7 @@ interface ApiService {
     @GET("data/master/WebContent/data/{userInfo}")
     fun getUserInfo(@Path("userInfo") userInfo: String): Call<BaseModel<UserInfoModel>>
 
+    @GET("data/master/WebContent/data/{pageNo}")
+    fun getCinemaListInfo(@Path("pageNo") pageNo: String): Call<BaseModel<List<CinemaModel>>>
 
 }

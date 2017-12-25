@@ -1,4 +1,4 @@
-package com.mvp.view
+package com.mvp.view.base
 
 /**
  * 项目名称：MVP

@@ -25,7 +25,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.FilmEntryActivity" />
-        <activity android:name=".activity.UserInfoActivity"></activity>
+        <activity android:name=".activity.UserInfoActivity" />
+        <activity android:name=".activity.CinemaActivity" />
+        <activity android:name=".activity.LoadMoreActivity"></activity>
     </application>
 
 </manifest>

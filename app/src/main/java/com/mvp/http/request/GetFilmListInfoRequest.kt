@@ -22,9 +22,8 @@ import retrofit2.Call
  * 修改备注：
  * @version
  */
-class GetFilmListInfoRequest(private var filmListInfoView: FilmListInfoView?) : BaseEntityRequest(), OnResponseListener<HotFilmModel> {
+class GetFilmListInfoRequest(private var filmListInfoView: FilmListInfoView?) : BaseEntityRequest<HotFilmModel>(), OnResponseListener<HotFilmModel> {
 
-    private var call: Call<BaseModel<HotFilmModel>>? = null
     private var refreshAndLoadMoreHandler = RefreshAndLoadMoreHandler(filmListInfoView!!)
 
     fun getFilmListInfoRequest(onLoadingViewListener: OnLoadingViewListener?, pageNo: String) {

@@ -2,6 +2,7 @@ package com.mvp.view
 
 import com.mvp.model.BannerModel
 import com.mvp.model.FilmInfoModel
+import com.mvp.view.base.IRefreshAndLoadMoreView
 
 /**
  * 项目名称：MVP

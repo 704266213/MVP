@@ -3,6 +3,9 @@ package com.mvp.http.request
 import com.mvp.api.ApiService
 import com.mvp.http.response.listener.OnResponseListener
 import com.mvp.http.retrofit.BaseRetrofit
+import com.mvp.model.BaseModel
+import com.mvp.model.CinemaModel
+import retrofit2.Call
 
 /**
  * 项目名称：MVP
@@ -16,12 +19,16 @@ import com.mvp.http.retrofit.BaseRetrofit
  */
 
 //private var onResponseListener: OnResponseListener<T>?
-open abstract class BaseEntityRequest {
+open abstract class BaseEntityRequest<T> {
+
+     var call: Call<BaseModel<T>>? = null
 
     fun createApiService(baseRetrofit: BaseRetrofit): ApiService {
         val retrofit = baseRetrofit.createRetrofit()
         return retrofit.create(ApiService::class.java)
     }
+
+
 
 
 }

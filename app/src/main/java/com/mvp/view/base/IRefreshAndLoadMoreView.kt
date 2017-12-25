@@ -1,4 +1,4 @@
-package com.mvp.view
+package com.mvp.view.base
 
 
 /**
@@ -11,7 +11,7 @@ package com.mvp.view
  * 修改备注：
  * @version
  */
-interface IRefreshAndLoadMoreView<out E, in T : List<E>> : IEntryRefreshView<T>, ILoadMoreAndInitView<E,T> {
+interface IRefreshAndLoadMoreView<out E, in T : List<E>> : IEntryRefreshView<T>, ILoadMoreAndInitView<E, T> {
 
 
 }

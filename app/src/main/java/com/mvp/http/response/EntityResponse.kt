@@ -2,7 +2,7 @@ package com.mvp.http.response
 
 import com.mvp.http.response.listener.OnResponseListener
 import com.mvp.model.BaseModel
-import com.mvp.view.InitView
+import com.mvp.view.base.InitView
 
 /**
  * 项目名称：MVP

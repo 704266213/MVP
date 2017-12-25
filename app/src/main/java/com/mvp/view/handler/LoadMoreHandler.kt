@@ -1,6 +1,6 @@
 package com.mvp.view.handler
 
-import com.mvp.view.ILoadMoreAndInitView
+import com.mvp.view.base.ILoadMoreAndInitView
 
 /**
  * 项目名称：MVP

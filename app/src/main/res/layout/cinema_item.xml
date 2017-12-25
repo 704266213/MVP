@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="100dp"
+    android:paddingBottom="14dp">
+
+
+    <TextView
+        android:id="@+id/cinemaDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:ellipsize="end"
+        android:lines="1"
+        tools:text="1.10km"
+        android:textColor="#FF787585"
+        android:textSize="13sp" />
+
+
+    <TextView
+        android:id="@+id/cinemaLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@id/cinemaDistance"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxHeight="40dp"
+        tools:text="宝安区建安一路与新圳路交汇处的海雅广场四层"
+        android:textColor="#FF787585"
+        android:textSize="13sp" />
+
+
+    <TextView
+        android:id="@+id/cinemaName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/cinemaLocation"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="12dp"
+        android:ellipsize="end"
+        android:lines="1"
+        tools:text="深圳万达电影城海雅店"
+        android:textColor="#FF1C1E1D"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/cinemaMinPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/cinemaName"
+        android:layout_marginTop="12dp"
+        android:layout_toRightOf="@id/cinemaName"
+        android:ellipsize="end"
+        android:lines="1"
+        tools:text="17.8元起"
+        android:textColor="#FF787585"
+        android:textSize="13sp" />
+
+
+</RelativeLayout>

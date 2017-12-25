@@ -3,6 +3,7 @@ package com.mvp
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.mvp.activity.CinemaActivity
 import com.mvp.activity.FilmEntryActivity
 import com.mvp.activity.UserInfoActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         loadMoreRequest.setOnClickListener({
-            val intent = Intent(this, FilmEntryActivity::class.java)
+            val intent = Intent(this, CinemaActivity::class.java)
             startActivity(intent)
         })
 

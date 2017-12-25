@@ -1,6 +1,6 @@
 package com.mvp.view.handler
 
-import com.mvp.view.IRefreshAndLoadMoreView
+import com.mvp.view.base.IRefreshAndLoadMoreView
 
 
 /**
