@@ -21,14 +21,15 @@ import retrofit2.Call
 //private var onResponseListener: OnResponseListener<T>?
 open abstract class BaseEntityRequest<T> {
 
-     var call: Call<BaseModel<T>>? = null
+    var call: Call<BaseModel<T>>? = null
 
     fun createApiService(baseRetrofit: BaseRetrofit): ApiService {
         val retrofit = baseRetrofit.createRetrofit()
         return retrofit.create(ApiService::class.java)
     }
 
-
-
+    fun onDestroy() {
+        call?.cancel()
+    }
 
 }

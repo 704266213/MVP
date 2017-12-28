@@ -10,8 +10,12 @@ package com.mvp.view.base
  * 修改备注：
  * @version
  */
-interface IEntryRefreshView<in T> : IRefreshView<T> {
+interface RefreshLoadMoreView<out E, in T : List<E>> : LoadMoreView<E, T> {
 
     fun isRefreshing(): Boolean
+
+    fun refreshComplete()
+
+    fun onRefreshSuccess()
 
 }

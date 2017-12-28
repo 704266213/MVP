@@ -10,15 +10,9 @@ package com.mvp.view.base
  * 修改备注：
  * @version
  */
-interface ILoadMoreView<in T> {
+interface LoadMoreView<out E, in T : List<E>> : BaseEntryView<E,T>{
 
     //是否正在加载更多
     fun isLoadMore(): Boolean
-
-    //数据已经加载完成
-    fun loadMoreSuccess(entity: T)
-
-    //数据已经加载失败
-    fun loadMoreFailure(errorInfo: String)
 
 }

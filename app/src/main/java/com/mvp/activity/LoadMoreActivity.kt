@@ -6,11 +6,12 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.mvp.adapter.LoadMoreRecycleAdapter
 import com.mvp.http.listener.OnStartRequestListener
-import com.mvp.view.base.ILoadMoreAndInitView
+import com.mvp.view.base.BaseEntryView
+import com.mvp.view.base.LoadMoreView
 import com.mvp.widget.LoadingFooterLayout
 import com.mvp.widget.loadmore.LinearLoadMoreListener
 
-abstract class LoadMoreActivity<T, in L : List<T>> : AppCompatActivity(), OnStartRequestListener, ILoadMoreAndInitView<T, L> {
+abstract class LoadMoreActivity<T, in L : List<T>> : AppCompatActivity(), OnStartRequestListener, LoadMoreView<T, L> {
 
     protected var pageNo = 1
     protected lateinit var loadingFooterLayout: LoadingFooterLayout
@@ -42,20 +43,18 @@ abstract class LoadMoreActivity<T, in L : List<T>> : AppCompatActivity(), OnStar
 
     abstract fun getLoadMoreAdapter(): LoadMoreRecycleAdapter<T>
 
-    override fun initViewFail(errorInfo: String) {
-
-    }
 
     override fun isLoadMore(): Boolean {
         return linearLoadMoreListener.isLoadingMore()
     }
 
-    override fun loadMoreSuccess(entity: L) {
-        if (allDataLoadFinish(entity))
-            pageNo += 1
+    override fun onSuccess(entity: L?) {
+        if (entity != null)
+            if (allDataLoadFinish(entity))
+                pageNo += 1
     }
 
-    override fun loadMoreFailure(errorInfo: String) {
+    override fun onFailure(errorInfo: String?) {
         linearLoadMoreListener.setLoadingMore(false)
     }
 

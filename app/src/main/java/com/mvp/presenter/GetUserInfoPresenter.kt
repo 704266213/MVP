@@ -1,13 +1,12 @@
-package com.mvp.http.request
+package com.mvp.presenter
 
 import com.happy.food.manager.NoCacheRetrofit
 import com.mvp.http.loading.OnLoadingViewListener
+import com.mvp.http.request.BaseEntityRequest
 import com.mvp.http.response.BaseResponseCallBack
-import com.mvp.http.response.EntityResponse
-import com.mvp.model.BaseModel
+import com.mvp.http.response.BaseEntityResponse
 import com.mvp.model.UserInfoModel
-import com.mvp.view.base.InitView
-import retrofit2.Call
+import com.mvp.view.base.BaseEntityView
 
 /**
  * 项目名称：MVP
@@ -19,22 +18,17 @@ import retrofit2.Call
  * 修改备注：
  * @version
  */
-class GetUserInfoRequest(private var initView: InitView<UserInfoModel>?) : BaseEntityRequest<UserInfoModel>() {
+class GetUserInfoPresenter(private var baseEntityView: BaseEntityView<UserInfoModel>?) : BaseEntityRequest<UserInfoModel>() {
 
-//    private var call: Call<BaseModel<UserInfoModel>>? = null
 
     fun getUserInfoRequest(onLoadingViewListener: OnLoadingViewListener?, userInfo: String) {
         val cacheRetrofit = NoCacheRetrofit()
         val apiService = createApiService(cacheRetrofit)
         call = apiService.getUserInfo(userInfo)
-        var entityResponse = EntityResponse(initView)
+        var entityResponse = BaseEntityResponse(baseEntityView)
         val callBack = BaseResponseCallBack(onLoadingViewListener, entityResponse)
         call?.enqueue(callBack)
     }
 
-    fun onDestroy() {
-        initView = null
-        call?.cancel()
-    }
 
 }

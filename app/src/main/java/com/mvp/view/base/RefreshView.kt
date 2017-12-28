@@ -10,11 +10,8 @@ package com.mvp.view.base
  * 修改备注：
  * @version
  */
-interface IRefreshView<in T> {
+interface RefreshView<in T> : BaseEntityView<T> {
 
-    fun onRefreshSuccess(entity: T)
-
-    fun onRefreshViewFail(errorInfo: String)
-
+    fun refreshComplete()
 
 }

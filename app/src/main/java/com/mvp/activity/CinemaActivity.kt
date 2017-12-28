@@ -6,15 +6,17 @@ import com.mvp.R
 import com.mvp.adapter.CinemaAdapter
 import com.mvp.adapter.LoadMoreRecycleAdapter
 import com.mvp.divider.HorizontalDividerItemDecoration
+import com.mvp.http.loading.FirstLoadingViewFinish
 import com.mvp.http.loading.LoadingView
-import com.mvp.http.request.CinemaRequest
+import com.mvp.http.loading.OnFirstLoadFinishListener
+import com.mvp.presenter.CinemaPresenter
 import com.mvp.model.CinemaModel
 import kotlinx.android.synthetic.main.activity_film_entry.*
 
-class CinemaActivity : LoadMoreActivity<CinemaModel, List<CinemaModel>>() {
+class CinemaActivity : LoadMoreActivity<CinemaModel, List<CinemaModel>>(), OnFirstLoadFinishListener {
 
     private var loadingView: LoadingView? = null
-    private val cinemaRequest = CinemaRequest(this)
+    private val cinemaRequest = CinemaPresenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +27,7 @@ class CinemaActivity : LoadMoreActivity<CinemaModel, List<CinemaModel>>() {
 
     private fun intView() {
         loadingViewLayout.onStartRequestListener = this
-        loadingView = LoadingView(loadingViewLayout)
+        loadingView = FirstLoadingViewFinish(loadingViewLayout, this)
         initLoadMore(recyclerView)
         startRequest()
     }
@@ -47,17 +49,16 @@ class CinemaActivity : LoadMoreActivity<CinemaModel, List<CinemaModel>>() {
 
     }
 
-    override fun initViewSuccess(entity: List<CinemaModel>?) {
+    override fun firstLoadFinish() {
         recyclerView.visibility = View.VISIBLE
         loadingView = LoadingView(loadingFooterLayout)
-        if (entity != null)
-            loadMoreSuccess(entity)
     }
 
 
     override fun onDestroy() {
         super.onDestroy()
         cinemaRequest.onDestroy()
+        loadingView?.onDestroy()
     }
 
 

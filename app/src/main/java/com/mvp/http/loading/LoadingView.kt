@@ -15,7 +15,7 @@ package com.mvp.http.loading
  * kotlin 的代理对象
  */
 //class LoadingView(private var onLoadingViewListener: OnLoadingViewListener?) : OnLoadingViewListener by onLoadingViewListener
-class LoadingView(private var onLoadingViewListener: OnLoadingViewListener?) : OnLoadingViewListener {
+open class LoadingView(private var onLoadingViewListener: OnLoadingViewListener?) : OnLoadingViewListener {
 
     override fun showSuccessView() {
         onLoadingViewListener?.showSuccessView()

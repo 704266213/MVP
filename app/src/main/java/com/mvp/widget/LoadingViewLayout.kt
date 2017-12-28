@@ -9,6 +9,7 @@ import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 
 import com.mvp.R
 import com.mvp.http.listener.OnStartRequestListener
@@ -49,6 +50,9 @@ class LoadingViewLayout : ConstraintLayout, View.OnClickListener, OnLoadingViewL
 
     override fun showSuccessView() {
         visibility = View.GONE
+
+        val parentView = parent as ViewGroup
+        parentView.removeView(this)
     }
 
     override fun showErrorView() {

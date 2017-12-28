@@ -1,8 +1,6 @@
 package com.mvp.http.response
 
-import com.mvp.http.response.listener.OnResponseListener
-import com.mvp.view.handler.EntryHandler
-import com.mvp.view.handler.LoadMoreHandler
+import com.mvp.view.base.LoadMoreView
 
 /**
  * 项目名称：MVP
@@ -14,15 +12,30 @@ import com.mvp.view.handler.LoadMoreHandler
  * 修改备注：
  * @version
  */
-class LoadMoreResponse<out E, in T : List<E>>(private var loadMoreHandler: LoadMoreHandler<E, T>) : OnResponseListener<T> {
+open class LoadMoreResponse<out E, in T : List<E>>(private var loadMoreView: LoadMoreView<E, T>?) : BaseEntryResponse<E, T>(loadMoreView) {
 
 
     override fun onSuccess(entity: T?) {
-        loadMoreHandler.onSuccessHandler(entity)
+        var isLoadMore = loadMoreView?.isLoadMore() ?: false
+        if (isLoadMore) {
+            loadMoreView?.onSuccess(entity)
+        } else {
+            super.onSuccess(entity)
+        }
     }
 
-    override fun onFailure(errorInfo: String) {
-        loadMoreHandler.onFailureHandler(errorInfo)
+
+    override fun onFailure(errorInfo: String?) {
+        var isLoadMore = loadMoreView?.isLoadMore() ?: false
+        if (isLoadMore) {
+            loadMoreView?.onFailure(errorInfo)
+        } else {
+            super.onFailure(errorInfo)
+        }
+    }
+
+    override fun onDestroy() {
+        loadMoreView = null
     }
 
 }

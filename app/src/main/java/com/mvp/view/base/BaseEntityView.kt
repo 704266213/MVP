@@ -10,10 +10,10 @@ package com.mvp.view.base
  * 修改备注：
  * @version
  */
-interface InitView<in T> {
+interface BaseEntityView<in T> {
 
-    fun initViewSuccess(entity: T?)
+    fun onSuccess(entity: T?)
 
-    fun initViewFail(errorInfo: String)
+    fun onFailure(errorInfo: String?)
 
 }

@@ -28,11 +28,11 @@ class BaseEntryRequest<out E, in T : List<E>>(private var onResponseListener: On
         addDataToAdapterListener.addDataToList(list)
     }
 
-    override fun onFailure(errorInfo: String) {
+    override fun onFailure(errorInfo: String?) {
         onResponseListener?.onFailure(errorInfo)
     }
 
-    fun onDestroy() {
+    override fun onDestroy() {
         onResponseListener = null
     }
 

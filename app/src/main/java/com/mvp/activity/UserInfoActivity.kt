@@ -6,16 +6,16 @@ import android.view.View
 import com.mvp.R
 import com.mvp.http.listener.OnStartRequestListener
 import com.mvp.http.loading.LoadingView
-import com.mvp.http.request.GetUserInfoRequest
+import com.mvp.presenter.GetUserInfoPresenter
 import com.mvp.model.UserInfoModel
-import com.mvp.view.base.InitView
+import com.mvp.view.base.BaseEntityView
 import kotlinx.android.synthetic.main.activity_user_info.*
 
-class UserInfoActivity : AppCompatActivity(), OnStartRequestListener, InitView<UserInfoModel> {
+class UserInfoActivity : AppCompatActivity(), OnStartRequestListener, BaseEntityView<UserInfoModel> {
 
 
     private var loadingView: LoadingView? = null
-    private var getUserInfoRequest = GetUserInfoRequest(this)
+    private var getUserInfoRequest = GetUserInfoPresenter(this)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,13 +36,13 @@ class UserInfoActivity : AppCompatActivity(), OnStartRequestListener, InitView<U
         getUserInfoRequest.getUserInfoRequest(loadingView, "userinfo.json")
     }
 
-    override fun initViewSuccess(entity: UserInfoModel?) {
+    override fun onSuccess(entity: UserInfoModel?) {
         result.visibility = View.VISIBLE
         if (entity != null)
             result.text = "{  userName：${entity.userName},  sex : ${entity.sex},  headUrl: ${entity.headUrl} }"
     }
 
-    override fun initViewFail(errorInfo: String) {
+    override fun onFailure(errorInfo: String?) {
 
     }
 

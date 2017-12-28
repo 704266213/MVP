@@ -41,6 +41,7 @@ class BaseResponseCallBack<E, T : BaseModel<E>>(private val onLoadingViewListene
         var isCancel = call?.isCanceled ?: false
         if (isCancel) {
             Log.e("XLog", "request is canceled")
+            onResponseListener.onDestroy()
         } else {
             Log.e("XLog", "error:" + t?.message)
         }

@@ -14,5 +14,7 @@ interface OnResponseListener<in T> {
 
     fun onSuccess(entity: T?)
 
-    fun onFailure(errorInfo: String)
+    fun onFailure(errorInfo: String?)
+
+    fun onDestroy()
 }

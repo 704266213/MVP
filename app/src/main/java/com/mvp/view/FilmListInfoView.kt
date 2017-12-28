@@ -1,8 +1,7 @@
 package com.mvp.view
 
 import com.mvp.model.BannerModel
-import com.mvp.model.FilmInfoModel
-import com.mvp.view.base.IRefreshAndLoadMoreView
+import com.mvp.view.base.RefreshLoadMoreView
 
 /**
  * 项目名称：MVP
@@ -14,7 +13,7 @@ import com.mvp.view.base.IRefreshAndLoadMoreView
  * 修改备注：
  * @version
  */
-interface FilmListInfoView : IRefreshAndLoadMoreView<FilmInfoModel, List<FilmInfoModel>> {
+interface FilmListInfoView<out E, in T : List<E>> : RefreshLoadMoreView<E, T> {
 
     fun initBanner(banners: List<BannerModel>)
 

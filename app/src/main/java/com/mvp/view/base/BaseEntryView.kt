@@ -10,8 +10,9 @@ package com.mvp.view.base
  * 修改备注：
  * @version
  */
-interface IEntryInitView<out E, in T : List<E>> : InitView<T> {
+interface BaseEntryView<out E, in T : List<E>> : BaseEntityView<T> {
 
     fun emptyView()
+
 
 }
