@@ -3,14 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/result"
+    <com.mvp.widget.reflesh.PtrClassicFrameLayout
+        android:id="@+id/refreshView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:textColor="@color/load_textView"
-        android:textSize="16sp"
-        android:visibility="gone" />
+        android:background="#f3f3f7"
+        android:visibility="gone"
+        app:ptr_duration_to_close="200"
+        app:ptr_duration_to_close_header="800"
+        app:ptr_keep_header_when_refresh="true"
+        app:ptr_pull_to_fresh="false"
+        app:ptr_ratio_of_header_height_to_refresh="1.2"
+        app:ptr_resistance="1.6">
+
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/load_textView"
+            android:textSize="16sp" />
+
+    </com.mvp.widget.reflesh.PtrClassicFrameLayout>
 
     <com.mvp.widget.LoadingViewLayout
         android:id="@+id/loadingViewLayout"

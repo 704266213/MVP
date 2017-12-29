@@ -4,9 +4,9 @@ import com.happy.food.manager.NoCacheRetrofit
 import com.mvp.http.loading.OnLoadingViewListener
 import com.mvp.http.request.BaseEntityRequest
 import com.mvp.http.response.BaseResponseCallBack
-import com.mvp.http.response.BaseEntityResponse
+import com.mvp.http.response.RefreshEntityResponse
 import com.mvp.model.UserInfoModel
-import com.mvp.view.base.BaseEntityView
+import com.mvp.view.base.RefreshView
 
 /**
  * 项目名称：MVP
@@ -18,14 +18,14 @@ import com.mvp.view.base.BaseEntityView
  * 修改备注：
  * @version
  */
-class GetUserInfoPresenter(private var baseEntityView: BaseEntityView<UserInfoModel>?) : BaseEntityRequest<UserInfoModel>() {
+class GetUserInfoPresenter(private var baseEntityView: RefreshView<UserInfoModel>?) : BaseEntityRequest<UserInfoModel>() {
 
 
     fun getUserInfoRequest(onLoadingViewListener: OnLoadingViewListener?, userInfo: String) {
         val cacheRetrofit = NoCacheRetrofit()
         val apiService = createApiService(cacheRetrofit)
         call = apiService.getUserInfo(userInfo)
-        var entityResponse = BaseEntityResponse(baseEntityView)
+        var entityResponse = RefreshEntityResponse(baseEntityView)
         val callBack = BaseResponseCallBack(onLoadingViewListener, entityResponse)
         call?.enqueue(callBack)
     }
