@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="default_color">#2196F3</color>
+    <dimen name="default_thickness">4dp</dimen>
+    <integer name="default_progress">0</integer>
+    <integer name="default_max_progress">100</integer>
+    <bool name="default_is_indeterminate">false</bool>
+    <bool name="default_anim_autostart">false</bool>
+    <integer name="default_anim_duration">4000</integer>
+    <integer name="default_anim_swoop_duration">5000</integer>
+    <integer name="default_anim_sync_duration">500</integer>
+    <integer name="default_anim_steps">3</integer>
+    <integer name="default_start_angle">-90</integer>
+</resources>

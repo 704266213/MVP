@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.mvp.widget.progress.CircularProgressView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/progressBar"
+    android:layout_width="@dimen/dimen_40"
+    android:layout_height="@dimen/dimen_40"
+    android:layout_gravity="center"
+    app:animAutostart="false"
+    app:animSwoopDuration="0"
+    app:animSyncDuration="0"
+    app:indeterminate="false"
+    app:isShowRing="true"
+    app:progressColor="@color/default_color" />

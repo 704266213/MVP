@@ -25,4 +25,20 @@
         <attr name="ptr_rotate_ani_time" format="integer" />
     </declare-styleable>
 
+    <declare-styleable name="CircularProgressView">
+        <attr name="progress" format="float" />
+        <attr name="maxProgress" format="float" />
+        <attr name="animDuration" format="integer" />
+        <attr name="animSwoopDuration" format="integer" />
+        <attr name="animSyncDuration" format="integer" />
+        <attr name="progressColor" format="color" />
+        <attr name="ringColor" format="color" />
+        <attr name="isShowRing" format="boolean" />
+        <attr name="thickness" format="dimension" />
+        <attr name="indeterminate" format="boolean" />
+        <attr name="animAutostart" format="boolean" />
+        <attr name="animSteps" format="integer" />
+        <attr name="startProgressAngle" format="float" />
+    </declare-styleable>
+
 </resources>

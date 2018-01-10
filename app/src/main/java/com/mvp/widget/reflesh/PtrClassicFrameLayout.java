@@ -3,6 +3,8 @@ package com.mvp.widget.reflesh;
 import android.content.Context;
 import android.util.AttributeSet;
 
+import com.happy.food.widget.reflesh.header.PtrHeader;
+
 public class PtrClassicFrameLayout extends PtrFrameLayout {
 
     private PtrClassicDefaultHeader mPtrClassicHeader;
@@ -23,9 +25,13 @@ public class PtrClassicFrameLayout extends PtrFrameLayout {
     }
 
     private void initViews() {
-        mPtrClassicHeader = new PtrClassicDefaultHeader(getContext());
-        setHeaderView(mPtrClassicHeader);
-        addPtrUIHandler(mPtrClassicHeader);
+//        mPtrClassicHeader = new PtrClassicDefaultHeader(getContext());
+//        setHeaderView(mPtrClassicHeader);
+//        addPtrUIHandler(mPtrClassicHeader);
+
+        PtrHeader ptrHeader = new PtrHeader(getContext());
+        setHeaderView(ptrHeader);
+        addPtrUIHandler(ptrHeader);
     }
 
 

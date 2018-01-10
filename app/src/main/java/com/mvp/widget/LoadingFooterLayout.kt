@@ -41,14 +41,6 @@ class LoadingFooterLayout : LinearLayout, OnLoadingViewListener {
         }
     }
 
-
-    fun showNoMoreView() {
-        progressBar.visibility = View.GONE
-        loadMore.visibility = View.VISIBLE
-        loadMore.isClickable = false
-        loadMore.text = resources.getString(R.string.no_more_load)
-    }
-
     override fun showLoadingView() {
         progressBar.visibility = View.VISIBLE
         loadMore.visibility = View.GONE
