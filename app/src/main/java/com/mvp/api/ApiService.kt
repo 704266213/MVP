@@ -2,8 +2,7 @@ package com.mvp.api
 
 import com.mvp.model.*
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.*
 
 
 /**
@@ -26,5 +25,9 @@ interface ApiService {
 
     @GET("data/master/WebContent/data/{pageNo}")
     fun getCinemaListInfo(@Path("pageNo") pageNo: String): Call<BaseModel<List<CinemaModel>>>
+
+    @FormUrlEncoded
+    @POST("data/master/WebContent/data/{pageNo}")
+    fun  getInfo(@Path("pageNo") pageNo: String, @FieldMap fieldMap: Map<String, String>): Call<BaseModel<UserInfoModel>>
 
 }

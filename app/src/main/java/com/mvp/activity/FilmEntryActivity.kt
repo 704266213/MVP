@@ -3,7 +3,10 @@ package com.mvp.activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.View
+import android.widget.Toast
+import com.kycc.app.adapter.listener.OnItemViewClickListener
 import com.mvp.R
 import com.mvp.adapter.FilmAdapter
 import com.mvp.divider.HorizontalDividerItemDecoration
@@ -21,7 +24,8 @@ import com.mvp.widget.reflesh.OnRefreshBeginListener
 import com.mvp.widget.reflesh.PtrDefaultHandler
 import kotlinx.android.synthetic.main.activity_film_entry.*
 
-class FilmEntryActivity : AppCompatActivity(), FilmListInfoView<FilmInfoModel, List<FilmInfoModel>>, OnFirstLoadFinishListener, OnRefreshBeginListener, OnStartRequestListener {
+class FilmEntryActivity : AppCompatActivity(), FilmListInfoView<FilmInfoModel, List<FilmInfoModel>>, OnFirstLoadFinishListener, OnRefreshBeginListener, OnStartRequestListener, OnItemViewClickListener<FilmInfoModel> {
+
 
     private var pageNo = 1
     private lateinit var getFilmListInfoRequest: GetFilmListInfoPresenter
@@ -61,6 +65,18 @@ class FilmEntryActivity : AppCompatActivity(), FilmListInfoView<FilmInfoModel, L
 
         getFilmListInfoRequest = GetFilmListInfoPresenter(this)
         startRequest()
+    }
+
+    override fun onItemViewClickListener(clickView: View, position: Int, entity: FilmInfoModel) {
+        Toast.makeText(this, "当前序号：$position", Toast.LENGTH_SHORT).show()
+        when (clickView.id) {
+            R.id.buyTickets -> {
+                Log.e("XLog", "=========点击购票按钮 id:${clickView.id}==============")
+            }
+            R.id.itemView -> {
+                Log.e("XLog", "=========点击itemView按钮  id:${clickView.id}==============")
+            }
+        }
     }
 
     override fun onRefreshBeginListener() {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
@@ -77,7 +78,7 @@
 
 
     <TextView
-        android:id="@+id/tickets"
+        android:id="@+id/buyTickets"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -100,7 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/filmActor"
         android:layout_alignStart="@+id/ratingBar"
-        android:layout_toStartOf="@id/tickets"
+        android:layout_toStartOf="@id/buyTickets"
         android:ellipsize="end"
         android:gravity="start|center_vertical"
         android:lines="1"
